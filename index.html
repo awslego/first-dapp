@@ -28,29 +28,12 @@
     if (typeof web3 !== 'undefined') {
         web3 = new Web3(web3.currentProvider);
     } else {
-        web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545")); // please change to your own Web3 Endpoint
+        web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545")); // please change to your own Web3 Provider Endpoint.
     }
     web3.eth.defaultAccount = web3.eth.accounts[0];
     console.log(web3.eth.defaultAccount);
 
     var ABI = [
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": false,
-                    "name": "name",
-                    "type": "string"
-                },
-                {
-                    "indexed": false,
-                    "name": "age",
-                    "type": "uint256"
-                }
-            ],
-            "name": "First",
-            "type": "event"
-        },
         {
             "constant": false,
             "inputs": [
@@ -86,10 +69,27 @@
             "payable": false,
             "stateMutability": "view",
             "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "name",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "name": "age",
+                    "type": "uint256"
+                }
+            ],
+            "name": "First",
+            "type": "event"
         }
     ];
     var myContract = web3.eth.contract(ABI);
-    var myFirst = myContract.at('0x1e96363a95c42ed4bad7083e57ee72e68ea054e8'); // Please change to your own contract-account.
+    var myFirst = myContract.at('0x17320ba8abab4bca3cfac50014c651bda6bf8443'); // Please change to your own Contract Account.
     console.log(myFirst);
 
     //-----------------------
